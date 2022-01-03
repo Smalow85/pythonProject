@@ -113,7 +113,7 @@ def main():
 
     updater = Updater(token=telegram_bot_token, use_context=True)
 
-    message_handler = MessageHandler(Filters.all, mimic)
+    message_handler = MessageHandler(Filters.text, mimic)
     updater.dispatcher.add_handler(message_handler)
 
     print("Start polling...")
