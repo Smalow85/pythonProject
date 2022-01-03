@@ -33,7 +33,7 @@ def error(update, context):
 # main logic
 def main():
     # to get the updates from bot
-    updater = Updater(token=TOKEN, use_context=True)
+    updater = Updater(token=TELEGRAM_ID, use_context=True)
 
     # to dispatch the updates to respective handlers
     dp = updater.dispatcher
@@ -49,7 +49,7 @@ def main():
     # to start webhook
     updater.start_webhook(listen="0.0.0.0", port=os.environ.get("PORT", 443),
                           url_path=TELEGRAM_ID,
-                          webhook_url="https://mimic-app.herokuapp.com/" + TELEGRAM_ID)
+                          webhook_url="https://yandex-station-bot.herokuapp.com/" + TELEGRAM_ID)
     updater.idle()
 
 
