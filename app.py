@@ -83,6 +83,9 @@ def sendToScreen(video_url):
 
     return res.text
 
+def mimic(update, context):
+    context.bot.send_message(update.message.chat.id, update.message.text)
+
 
 def message_recieved(bot, update, context):
 
@@ -104,15 +107,13 @@ def message_recieved(bot, update, context):
     video_url = getVideoUrl(url)
     result = sendToScreen(video_url)
 
-    context.bot.send_message("Message has been sent")
-
     print(result)
 
 def main():
 
     updater = Updater(token=telegram_bot_token, use_context=True)
 
-    message_handler = MessageHandler(Filters.all, message_recieved)
+    message_handler = MessageHandler(Filters.all, mimic)
     updater.dispatcher.add_handler(message_handler)
 
     print("Start polling...")
