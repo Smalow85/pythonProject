@@ -116,13 +116,10 @@ def message_recieved(bot, update, context):
 # main logic
 def main():
     # to get the updates from bot
-    updater = Updater(token=TELEGRAM_ID)
+    updater = Updater(token=TELEGRAM_ID, use_context=True)
 
-    # to dispatch the updates to respective handlers
-    dp = updater.dispatcher
-
-    # handlers
-    dp.add_handler(MessageHandler(Filters.text, message_recieved))
+    message_handler = MessageHandler(Filters.all, message_recieved)
+    updater.dispatcher.add_handler(message_handler)
 
 
     # to start webhook
