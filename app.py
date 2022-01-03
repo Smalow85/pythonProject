@@ -93,6 +93,7 @@ def message_recieved(bot, update, context):
 
     chat_id = bot.message.chat_id
     # TODO: get yandex configs based on user_id
+    context.bot.send_message(update.message.chat.id, update.message.text)
 
     print(chat_id)
 
