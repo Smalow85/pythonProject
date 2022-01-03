@@ -12,8 +12,6 @@ password = "#Zebra2022"
 telegram_bot_token = "1098449627:AAHaFcYmW2WoBdgXE1IJamhEuOigqN8G6ZU"
 bot_password = "123"
 
-proxy = None
-
 def getVideoUrl(url):
 
     global last_url
