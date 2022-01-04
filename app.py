@@ -89,11 +89,10 @@ def mimic(update, context):
     context.bot.send_message(update.message.chat.id, update.message.text)
 
 
-def message_recieved(bot, update, context):
+def message_recieved(bot):
 
     chat_id = bot.message.chat_id
     # TODO: get yandex configs based on user_id
-    context.bot.send_message(update.message.chat.id, update.message.text)
 
     print(chat_id)
 
@@ -117,10 +116,8 @@ def message_recieved(bot, update, context):
 def main():
     # to get the updates from bot
     updater = Updater(token=TELEGRAM_ID, use_context=True)
-    bot = ExtBot()
-    context = CallbackContext()
 
-    message_handler = MessageHandler(Filters.all, message_recieved(context))
+    message_handler = MessageHandler(Filters.all, message_recieved)
     updater.dispatcher.add_handler(message_handler)
 
 
