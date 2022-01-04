@@ -7,15 +7,14 @@ from pytube import YouTube
 # telegram token
 TELEGRAM_ID = os.environ.get("TELEGRAM_ID")
 
-
 last_url = ""
 authorised_users = []
 login = "smalow"
 password = "#Zebra2022"
 bot_password = "123"
 
-def getVideoUrl(url):
 
+def getVideoUrl(url):
     global last_url
 
     if url == last_url:  # Second attempt - trying another player
@@ -85,12 +84,12 @@ def sendToScreen(video_url):
 
     return res.text
 
+
 def mimic(update, context):
     context.bot.send_message(update.message.chat.id, update.message.text)
 
 
-def message_recieved(bot):
-
+def message_recieved(bot, update):
     chat_id = bot.message.chat_id
     # TODO: get yandex configs based on user_id
 
@@ -115,11 +114,10 @@ def message_recieved(bot):
 # main logic
 def main():
     # to get the updates from bot
-    updater = Updater(token=TELEGRAM_ID, use_context=True)
+    updater = Updater(token=TELEGRAM_ID)
 
     message_handler = MessageHandler(Filters.all, message_recieved)
     updater.dispatcher.add_handler(message_handler)
-
 
     # to start webhook
     updater.start_webhook(listen="0.0.0.0", port=os.environ.get("PORT", 443),
