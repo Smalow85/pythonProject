@@ -1,7 +1,7 @@
 import json
 import os
 import requests
-from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import Updater, MessageHandler, Filters, ExtBot, CallbackContext
 from pytube import YouTube
 
 # telegram token
@@ -117,8 +117,10 @@ def message_recieved(bot, update, context):
 def main():
     # to get the updates from bot
     updater = Updater(token=TELEGRAM_ID, use_context=True)
+    bot = ExtBot()
+    context = CallbackContext()
 
-    message_handler = MessageHandler(Filters.all, message_recieved)
+    message_handler = MessageHandler(Filters.all, message_recieved(context))
     updater.dispatcher.add_handler(message_handler)
 
 
