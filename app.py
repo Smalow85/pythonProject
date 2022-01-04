@@ -6,11 +6,11 @@ from pytube import YouTube
 
 # telegram token
 TELEGRAM_ID = os.environ.get("TELEGRAM_ID")
+PASSWORD = os.environ.get("PASSWORD")
+LOGIN = os.environ.get("LOGIN")
 
 last_url = ""
 authorised_users = []
-login = "smalow"
-password = "#Zebra2022"
 bot_password = "123"
 
 
@@ -42,8 +42,8 @@ def sendToScreen(video_url):
     # Auth and getting Session_id
 
     auth_data = {
-        'login': login,
-        'passwd': password
+        'login': LOGIN,
+        'passwd': PASSWORD
     }
 
     s = requests.Session()
@@ -51,7 +51,7 @@ def sendToScreen(video_url):
     s.get("https://passport.yandex.ru/")
     s.post("https://passport.yandex.ru/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
 
-    Session_id = s.cookies["session.Id"]
+    Session_id = s.cookies["Session_id"]
 
     # Getting x-csrf-token
     token = s.get('https://frontend.vh.yandex.ru/csrf_token').text
