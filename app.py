@@ -51,8 +51,6 @@ def sendToScreen(video_url):
     s.get("https://passport.yandex.ru/")
     s.post("https://passport.yandex.ru/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
 
-    Session_id = s.cookies["Session_id"]
-
     # Getting x-csrf-token
     token = s.get('https://frontend.vh.yandex.ru/csrf_token').text
     print(token)
