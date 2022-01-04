@@ -49,7 +49,9 @@ def sendToScreen(video_url):
     s = requests.Session()
     print(s)
     s.get("https://passport.yandex.ru/")
-    s.post("https://passport.yandex.ru/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
+    res = s.post("https://passport.yandex.ru/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
+
+    Session_id = res.cookies
 
     # Getting x-csrf-token
     token = s.get('https://frontend.vh.yandex.ru/csrf_token').text
@@ -78,6 +80,7 @@ def sendToScreen(video_url):
 
     # Sending command with video to device
     res = s.post("https://yandex.ru/video/station", data=json.dumps(data), headers=headers)
+    res.cookies
     print(res)
 
     return res.text
