@@ -42,13 +42,14 @@ def sendToScreen(video_url):
     # Auth and getting Session_id
 
     auth_data = {
-        'login': LOGIN,
-        'passwd': PASSWORD
+        'login': "smalow",
+        'passwd': "#Zebra2022"
     }
 
     s = requests.Session()
     s.get("https://passport.yandex.com/")
     res = s.post("https://passport.yandex.com/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
+    print(res)
 
     Session_id = s.cookies
 
