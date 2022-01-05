@@ -46,20 +46,17 @@ def sendToScreen(video_url):
         'passwd': "#Zebra2022"
     }
 
-    s = requests.Session()
-    res = s.get("https://passport.yandex.com/")
-    print(res.cookies)
-    res = s.post("https://passport.yandex.com/passport?mode=auth&retpath=https://yandex.ru", data=auth_data)
-    print(res.cookies)
-
-    Session_id = s.cookies
+    res = requests.get("https://passport.yandex.com/")
+    res2 = requests.post("https://passport.yandex.com/passport?mode=auth&retpath=https://yandex.ru", data=auth_data, cookies=res.cookies)
+    print(res2)
 
     # Getting x-csrf-token
-    token = s.get('https://frontend.vh.yandex.ru/csrf_token').text
-    print(token)
+    res3 = requests.get('https://frontend.vh.yandex.ru/csrf_token', cookies=res2.cookies)
+    token = res3.text
+    print(res3)
 
     # Detting devices info TODO: device selection here
-    devices_online_stats = s.get("https://quasar.yandex.ru/devices_online_stats").text
+    devices_online_stats = requests.get("https://quasar.yandex.ru/devices_online_stats", cookies=res3.cookies).text
     devices = json.loads(devices_online_stats)["items"]
 
     # Preparing request
