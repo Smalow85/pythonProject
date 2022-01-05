@@ -43,7 +43,7 @@ def sendToScreen(video_url):
 
     auth_data = {
         'login': "smalow",
-        'passwd': "#Zebra2022"
+        'password': "#Zebra2022"
     }
 
     res = requests.get("https://passport.yandex.com/")
